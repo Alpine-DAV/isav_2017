@@ -1,7 +1,7 @@
 \documentclass[sigconf]{acmart}
 
 \usepackage{booktabs} % For formal tables
-
+\usepackage{listings}
 
 % Copyright
 %\setcopyright{none}
@@ -21,8 +21,7 @@
 \acmISBN{123-4567-24-567/08/06}
 
 %Conference
-\acmConference[WOODSTOCK'97]{ACM Woodstock conference}{July 1997}{El
-  Paso, Texas USA} 
+\acmConference[ISAV 2017]{ISAV 2017: In Situ Infrastructures for Enabling Extreme-scale Analysis and Visualization}{November 2017}{Denver, Colorado USA} 
 \acmYear{1997}
 \copyrightyear{2016}
 
@@ -30,10 +29,10 @@
 
 
 \begin{document}
-\title{Alpine}
+\title{Alpine In Situ Infrastructure: Rising from the Ashes of Strawman}
 \titlenote{Produces the permission block, and
   copyright information}
-\subtitle{Authors in no alphabetical order:}
+\subtitle{Authors in alphabetical order:}
 \subtitlenote{The full version of the author's guide is available as
   \texttt{acmart.pdf} document}
 
@@ -64,7 +63,8 @@
 \email{larsen30@llnl.gov}
 
 % The default list of authors is too long for headers}
-\renewcommand{\shortauthors}{B. Trovato et al.}
+\renewcommand{\shortauthors}{Humans et al.}
+
 
 
 \begin{abstract}
@@ -111,11 +111,25 @@ ACM SIG Proceedings.\footnote{This is an abstract footnote}
 
 \keywords{ACM proceedings, \LaTeX, text tagging}
 
+\newcommand{\fix}[1]{\textcolor{red}{#1}}
+
+\lstset{language=C++,
+	basicstyle=\ttfamily,
+	showstringspaces=false,
+	keywordstyle=\color{blue}\ttfamily,
+	stringstyle=\color{red}\ttfamily,
+	commentstyle=\color{gray}\ttfamily,
+	morecomment=[l][\color{magenta}]{\#}
+}
+
 
 \maketitle
 
 \input{intro.inc}
 \input{related_work.inc}
+\input{interface.inc}
+
+\input{architecture.inc}
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{ISAV_Alpine} 
