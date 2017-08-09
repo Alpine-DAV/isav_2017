@@ -34,6 +34,8 @@ Flow is generic and supports filters inputs and outputs of any type.
 Each VTK-h algorithm is wrapped by Flow.
 }
 
+\fix{Flow makes it easy to insert custom user defined filters.}
+
 \subsection{Ascent Runtime}
 The Ascent Runtime is the layer that sits on top of Flow and beneath the Alpine In Situ Interface.
 %
