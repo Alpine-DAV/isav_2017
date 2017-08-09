@@ -23,18 +23,34 @@ For distributed-memory parallelism, VTK-h uses MPI and also includes the DIY~\ci
 
 \subsection{Flow}
 
-\fix{Cyrus: write this section. VTK-h, by design, contains no execution model.
 %
-To fill this role, we created the Flow library which is included in Alpine In Situ.
-%
-Flow implements a simple data flow network that enables us to chain together a series of filters described by the Alpine In Situ interface.
-%
-Flow is generic and supports filters inputs and outputs of any type.
-%
-Each VTK-h algorithm is wrapped by Flow.
-}
+\fix{transition is abrupt here b/c the intro sentence re-hashes a main point from the prior section.}
+% 
 
-\fix{Flow makes it easy to insert custom user defined filters.}
+VTK-h does not provide its own execution model. This choice simplifies the VTH-h API and makes it easy to leverage VTH-h within ParaView and VisIt`s existing full featured execution models. 
+
+Since Alpine Ascent does not leverage ParaView or VisIt's infrastructure, it needs a basic execution model to support using VTH-h algorithms to carry out the user's requested actions. 
+
+Ascent uses a simple dataflow library named Flow to efficiently compose and execute VTK-h filters. Alpine`s Flow library is a C++ evolution of the Python dataflow network infrastructure used in \cite{cyrush_pyhpc2012}. It supports declaration and execution of a directed acyclic graph (DAG) of filters created from menu of filter types that are registered at runtime. Filters declare a minimal interface, which includes the number of expected inputs and outputs, and a set of default parameters. Flow uses a topological sort to ensure proper filter execution order, tracks all intermediate results, and provides basic memory management capabilities. 
+
+The VTK-h algorithms needed by Ascent are wrapped as a Flow Filters so they can be executed as part of a DAG composed by Ascent.
+
+Like its Python predecessor, Flow provides support for generic inputs and outputs. Flow provides a mechanism for filters to check input data types at runtime if necessary. Because of this data-type agnostic design, the Flow library does not depend on VTH-h. This provides the flexibility to create filters which can process data in other data models and APIs. This design supports important future use cases, such as creating a filter to refine high-order MFEM meshes into to VTK-h datasets for rendering.
+
+
+\fix{cite MFEM, here or earlier?}
+
+% \fix{Cyrus: write this section. VTK-h, by design, contains no execution model.
+% %
+% %
+% Flow implements a simple data flow network that enables us to chain together a series of filters described by the Alpine In Situ interface.
+% %
+% Flow is generic and supports filters inputs and outputs of any type.
+%
+
+% }
+%
+% \fix{Flow makes it easy to insert custom user defined filters.}
 
 \subsection{Ascent Runtime}
 The Ascent Runtime is the layer that sits on top of Flow and beneath the Alpine In Situ Interface.
