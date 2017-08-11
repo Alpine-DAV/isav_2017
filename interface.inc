@@ -24,7 +24,7 @@ alpine.Execute(actions);
 alpine.Close();
 \end{lstlisting}
 
-\subsection{Actions API}
+\subsection{Actions}
 In Alpine, we replaced Strawman's simple rendering focused actions with a more expressive interface. The new interface is organized around three main use cases: making pictures, capturing data, and transforming data.
 %
 Users invoke these use cases by passing actions that declare sets of Scenes, Extracts, and Pipelines:
