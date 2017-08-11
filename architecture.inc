@@ -1,8 +1,10 @@
 \section{Architecture}
 \begin{figure*}
   \includegraphics[width=\textwidth=4cm]{images/alpine_arch}
-  \caption{This is a tiger.}
+  \caption{This is NOT a tiger.}
 \end{figure*}
+
+\fix{Alpine Ascent, the runtime that implements the actions supported by the Alpine Interface, is built using VTK-h and Flow.}
 
 \subsection{VTK-h}
 \fix{This is paraphrased from an ECP report Hank wrote.} VTK-h is a stand alone library that implements a distributed-memory layer on top of the VTK-m library~\cite{Moreland:CGA2016}, which focuses on shared-memory parallelism.

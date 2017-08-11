@@ -1,17 +1,22 @@
 \section{Interface}
 The top-level interface to Alpine mirrors the Strawman interface and it consists of four functions: Open, Publish, Execute, and Close.
 %
-All data passed into Alpine using Conduit~\cite{conduit}, a library that provides intuitive model for describing hierarchical scientific data.
+All data and parameters are passed into Alpine using Conduit~\cite{conduit}, a library that provides intuitive model for describing hierarchical scientific data. Since Conduit provides C++, C, Fortran, and Python APIs for data description, exposing the Alpine interface in these languages is trivial.
+
 % 
-Alpine is initialized with the ``Open'' call with several parameters including an MPI communicator.
+Alpine is initialized by calling the ``Open'' method and passing several parameters, including an MPI communicator.
 %
-Next, simulation mesh data structures are described using Conduit's Blueprint interface, which is a simple set of conventions for describing  mesh data ranging from uniform meshes to topologies composed of higher order elements, and the resulting Conduit node is published through the ``Publish'' call.
+Next, simulation mesh data structures are described using Conduit's Mesh Blueprint, a set of conventions for describing domain-decomposed mesh data ranging from uniform meshes to topologies composed of higher order elements, and the resulting Conduit Node is published through Alpine's ``Publish'' method. 
+
+Alpine verifies that published data conforms to the Mesh Blueprint. If the data does not conform, a detailed description of what is missing or invalid is provided. 
+
 %
-Third, Alpine executes a series of user defined actions through the ``Execute'' call.
+Third, Alpine executes sets of actions described and passed to the ``Execute'' method.
+
 %
 Finally, the ``Close'' call informs Alpine that no further execution is required.
 
-\begin{lstlisting}[caption={Top-level Alpine interface.},captionpos=b,label=top_level_interface]
+\begin{lstlisting}[caption={Top-level Alpine interface in C++.},captionpos=b,label=top_level_interface]
 Alpine alpine;
 alpine.Open(options);
 alpine.Publish(data);
@@ -20,37 +25,42 @@ alpine.Close();
 \end{lstlisting}
 
 \subsection{Actions API}
-
-We designed the \fix{actions interface} to support three main use cases: making pictures, capturing data, and transforming data.
+In Alpine, we replaced Strawman's simple rendering focused actions with a more expressive interface. The new interface is organized around three main use cases: making pictures, capturing data, and transforming data.
 %
-To support these use cases, we leverage three abstractions:
+Users invoke these use cases by passing actions that declare sets of Scenes, Extracts, and Pipelines:
+
 \begin{itemize}
 \item Scenes: make pictures
 \item Extracts: capture data
 \item Pipelines: transform data
 \end{itemize}
-At a high level, Scenes allow uses to describe the images they want to create.
+
+
+
+At a high level, Scenes allow users to describe the images they want to create.
 %
-Extracts allows uses to describe how they want to capture data, and Pipelines allows users to describe how they want to transform their data.
+Extracts allows users to describe how they want to capture data for use outside of Alpine, and Pipelines allow users to describe the ways they want to transform their data.
 
 \subsection{Scenes: Make Pictures}
 \label{sec:scenes}
-A scene encapsulates the required information to generate one or more images.
+A scene encapsulates the information required to generate one or more images.
 %
-The user specifies a collection of plots (e.g., volume or surface rendering) and associated parameters such as camera definitions, light positions, and annotation types.
+The user specifies a collection of plots (e.g., volume or surface rendering) and associated parameters such as camera definitions, light positions, and annotations.
 %
 
-There are only two required parameters for defining a scene: plot type and scalar field.
-%
-A scene defined in this way uses the default data source, which is all of the data published by the simulation, and the scene uses the default settings for camera position, image resolution, lighting, and annotations.
-%
-An example of a scene defined with only the required parameters is shown at the beginning of Listing~\ref{scene_actions}.
-%
-The definition of ``scene1'' indicates that a volume plot of the scalar field ``noise'' using the default parameters.
-%
-In this case, a single image of the volume plot of the scalar field ``noise'' will be save to the file system.
+To define a scene, a user describes one or more plots. 
 
-\begin{lstlisting}[caption={Scene descriptions.},captionpos=b,label=scene_actions]
+There are only two required parameters for defining a plot: plot type and scalar field.
+%
+A scene defined in this way uses the default data source, which is all of the data published by the simulation, and default settings for camera position, image resolution, lighting, and annotations.
+%
+An example of a minimally defined scene is shown at the beginning of Listing~\ref{scene_actions}.
+%
+The definition of ``scene1'' indicates the user wants a volume plot of the scalar field ``noise'' using the default parameters.
+%
+In this case, a single image of the volume plot of the scalar field ``noise'' will be saved to the file system.
+
+\begin{lstlisting}[caption={Example Scene Descriptions in C++},captionpos=b,label=scene_actions]
 conduit::Node scenes;
 
 // scene 1, a single volume plot 
@@ -70,7 +80,7 @@ scenes["scene2/plot2/pipeline"] = "pl2";
 
 The second scene definition. ``scene2'', in Listing~\ref{scene_actions} indicates that a single image should be created by combining the output of two plots, a pseudocolor plot and a mesh plot.
 %
-Unlike the first example, the plots that form ``scene2'' do not use the default data source, and they instead will uses the result of a pipeline (see Section~\ref{sec:pipelines}), a series of transformations on the published mesh data. 
+Unlike the first example, the plots that form ``scene2'' do not use the default data source, and they instead use the result of a pipeline (see Section~\ref{sec:pipelines}), a series of transformations on the published mesh data. 
 
 A single scene definition can create more than one image.
 %
@@ -82,13 +92,13 @@ Further, rendering parameters support camera definitions that output many images
 \subsection{Extracts: Capture Data}
 \label{sec:extracts}
 
-Extracts are an abstraction that enables the use to specify how they want to capture their data.
+Extracts are an abstraction that enables the user to specify how they want to capture their data.
 %
 In terms of Alpine, data capture sends data outside the Alpine infrastructure.
 %
 Examples include writing out the raw simulation data to the file system, creating HDF5 files, or sending the data off node (e.g., ADIOS~\cite{Lofstead2008}).
 
-\begin{lstlisting}[caption={Extract descriptions.},captionpos=b,label = extract_actions]
+\begin{lstlisting}[caption={Example Extract Descriptions in C++.},captionpos=b,label = extract_actions]
 conduit::Node extracts;
 // use default pipeline (original mesh)
 extracts["ex1/type"] = "hdf5";
@@ -98,16 +108,19 @@ extracts["ex2/type"] = "hdf5";
 extracts["ex2/pipeline"] = "pl2";
 \end{lstlisting}
 
-\subsection{Pipelines: Transform Data}
-\label{sec:pipelines}
 
 Extracts, like scenes, can either consume the default data source, all published simulation data, or the result of a pipeline (see~\ref{sec:pipelines}).
 %
-Listing~\ref{extract_actions} show the declaration of two extracts.
+Listing~\ref{extract_actions} shows the declaration of two extracts.
 %
 The first extract saves the default data source into an HDF5 file, and the second extract saves the result of a pipeline, referenced by pipeline name, into an HD5f file.
 
-\begin{lstlisting}[caption={Pipeline desctiptions.},captionpos=b,label=pipeline_actions]
+\subsection{Pipelines: Transform Data}
+\label{sec:pipelines}
+
+\fix{talk about pipelines!}
+
+\begin{lstlisting}[caption={Example Pipeline Descriptions in C++.},captionpos=b,label=pipeline_actions]
 conduit::Node pipelines;
 // pipeline 1
 pipelines["pl1/f1/type"] = "contour";
