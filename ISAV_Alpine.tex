@@ -29,7 +29,7 @@
 
 
 \begin{document}
-\title{Alpine In Situ Infrastructure: Rising from the Ashes of Strawman}
+\title{The ALPINE In Situ Infrastructure: \\ Rising from the Ashes of Strawman}
 \titlenote{Produces the permission block, and
   copyright information}
 \subtitle{Middle authors in alphabetical order:}
@@ -40,9 +40,9 @@
 \affiliation{\institution{Lawrence Livermore National Lab}}
 \email{larsen30@llnl.gov}
 
-\author{James Arhens}
+\author{James Ahrens}
 \affiliation{\institution{Los Alamos National Lab}}
-\email{arhens@lanl.gov}
+\email{ahrens@lanl.gov}
 
 \author{Utkarsh Ayachit}
 \affiliation{\institution{Kitware, Inc}}
@@ -72,9 +72,19 @@
 
 
 \begin{abstract}
-This paper provides a sample of a \LaTeX\ document which conforms,
-somewhat loosely, to the formatting guidelines for
-ACM SIG Proceedings.\footnote{This is an abstract footnote}
+This paper introduces ALPINE, a flyweight in situ infrastructure.
+%
+The infrastructure is designed for leading-edge supercomputers, and
+has support for both distributed-memory and shared-memory parallelism.
+%
+It can take advantage of computing power on both conventional CPU architecture
+and on many-core architectures such as NVIDIA GPUs or the Intel Xeon Phi.
+%
+Further, it has a flexible design that allows support for integrating new
+visualization and analysis routines and libraries.
+%
+The paper describes ALPINE's interface choices and architecture, and also reports
+on initial experiments performed using the infrastructure.
 \end{abstract}
 
 %
