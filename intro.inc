@@ -32,7 +32,7 @@ are replaced at compile time with efficient hardware-specific implementations,
 enabling portable performance over multiple architectures.
 ALPINE's distributed-memory parallel support can come from either DIY~\cite{DIY} or MPI~\cite{MPI}.
 %
-ALPINE achieves this hybrid parallel through use of a new library, called VTK-h (`h' for hybrid 
+ALPINE achieves this hybrid parallelism through use of a new library, called VTK-h (`h' for hybrid 
 parallelism), that combines VTK-m and DIY/MPI.
 VTK-h is  introduced later in this paper.
 \item \textbf{Flyweight infrastructure.}

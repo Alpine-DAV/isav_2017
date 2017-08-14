@@ -48,9 +48,7 @@ A scene encapsulates the information required to generate one or more images.
 The user specifies a collection of plots (e.g., volume or surface rendering) and associated parameters such as camera definitions, light positions, and annotations.
 %
 
-To define a scene, a user describes one or more plots. 
-
-There are only two required parameters for defining a plot: plot type and scalar field.
+To define a scene, a user describes one or more plots. There are only two required parameters for defining a plot: plot type and scalar field.
 %
 A scene defined in this way uses the default data source, which is all of the data published by the simulation, and default settings for camera position, image resolution, lighting, and annotations.
 %
@@ -86,7 +84,7 @@ A single scene definition can create more than one image.
 %
 The rendering parameters are contained in a list, and one image is created for each entry.
 %
-Further, rendering parameters support camera definitions that output many images, such as Cinema~\ref{AhrensCinema}, where the camera has parameters $phi$ and $theta$ and the total images produced is $phi * theta$.
+Further, rendering parameters support camera definitions that output many images. This allows us to target  Cinema~\ref{AhrensCinema}, by providing camera parameters $phi$ and $theta$, that produce a total of $phi * theta$ images.
 
 
 \subsection{Extracts: Capture Data}
@@ -151,4 +149,4 @@ clip_params["sphere/radius"]   = .1;
 pipelines["pl2/f2/params/"] = clip_params;
 \end{lstlisting}
 
-Listing~\ref{pipeline_actions} shows the declaration of two pipelines. The first applies a contour filter to extract two isosurfaces of scalar field ``noise''. The second pipeline applies a threshold filter to screen the ``noise'' field, and then a clip filter to extract the intersection of what remains from the threshold with a sphere.
+Listing~\ref{pipeline_actions} shows the declaration of two pipelines. The first applies a contour filter to extract two isosurfaces of the scalar field ``noise''. The second pipeline applies a threshold filter to screen the ``noise'' field, and then a clip filter to extract the intersection of what remains from the threshold with a sphere.

@@ -11,7 +11,7 @@ Alpine Ascent is the new in situ infrastructure that implements the actions supp
 %
 The VTK-h library is a collection of distributed-memory algorithms, and VTK-h does not contain an execution model, such as the demand-driven data flow in VTK.
 %
-The design of VTK-h is intended to facilitate the wrapping of VTK-h algorithms so that they can be included in the execution models of other visualization tools including Alpine In Situ, ParaView, and VisIt.
+The design of VTK-h is intended to facilitate the wrapping of VTK-h algorithms so that they can be included in the execution models of other visualization tools including Alpine Ascent, ParaView, and VisIt.
 %
 Consequently, VTK-h serves a single point of development in which algorithms can be easily deployed into any toolkit that includes the VTK-h library.
 
@@ -56,7 +56,7 @@ The Ascent Runtime is the layer that sits on top of Flow and beneath the Alpine 
 %
 Ascent's responsibility is to translate a set of actions (e.g., Listings~\ref{scene_actions}, \ref{extract_actions}, and \ref{pipeline_actions} ) passed to the Alpine `Execute' method, into a Flow graph.
 %
-Ascent loops through hierarchy of actions contained in a conduit node, and Ascent creates a series of Flow filters (i.e., graph nodes) and connects the Flow filters together (i.e., edges).
+Ascent loops through hierarchy of actions contained in a conduit node, and creates a series of Flow filters (i.e., graph nodes) and connects the Flow filters together (i.e., edges).
 %
 Figure~\ref{flow_graph} shows the graph representation Ascent creates given the actions described by Listings~\ref{scene_actions}, \ref{extract_actions}, and \ref{pipeline_actions}.
 %
