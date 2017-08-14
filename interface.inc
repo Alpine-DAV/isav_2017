@@ -1,12 +1,12 @@
 \section{Interface}
-The top-level interface to Alpine mirrors the Strawman interface and it consists of four functions: Open, Publish, Execute, and Close.
+The top-level interface to Alpine mirrors the Strawman interface and consists of four methods: Open, Publish, Execute, and Close.
 %
 All data and parameters are passed into Alpine using Conduit~\cite{conduit}, a library that provides intuitive model for describing hierarchical scientific data. Since Conduit provides C++, C, Fortran, and Python APIs for data description, exposing the Alpine interface in these languages is trivial.
 
 % 
 Alpine is initialized by calling the ``Open'' method and passing several parameters, including an MPI communicator.
 %
-Next, simulation mesh data structures are described using Conduit's Mesh Blueprint, a set of conventions for describing domain-decomposed mesh data ranging from uniform meshes to topologies composed of higher order elements, and the resulting Conduit Node is published through Alpine's ``Publish'' method. 
+Next, simulation mesh data structures are described using Conduit's Mesh Blueprint \cite{conduit_blueprint}, a set of conventions for describing domain-decomposed mesh data ranging from uniform meshes to topologies composed of higher order elements, and the resulting Conduit Node is published through Alpine's ``Publish'' method. 
 
 Alpine verifies that published data conforms to the Mesh Blueprint. If the data does not conform, a detailed description of what is missing or invalid is provided. 
 
@@ -113,12 +113,13 @@ Extracts, like scenes, can either consume the default data source, all published
 %
 Listing~\ref{extract_actions} shows the declaration of two extracts.
 %
-The first extract saves the default data source into an HDF5 file, and the second extract saves the result of a pipeline, referenced by pipeline name, into an HD5f file.
+The first extract saves the default data source into an HDF5 file, and the second extract saves the result of a pipeline, referenced by pipeline name, into an HDF5 file.
 
 \subsection{Pipelines: Transform Data}
 \label{sec:pipelines}
 
-\fix{talk about pipelines!}
+Pipelines allow users to compose filters that transform the published input data into new meshes.
+This is where users specify typical geometric tranforms (clipping, slicing), field based transforms (threshold, contour), etc. The resulting data from each Pipeline can be used as input to Scenes or Extracts. 
 
 \begin{lstlisting}[caption={Example Pipeline Descriptions in C++.},captionpos=b,label=pipeline_actions]
 conduit::Node pipelines;
@@ -149,3 +150,5 @@ clip_params["sphere/center/z"] = 0.0;
 clip_params["sphere/radius"]   = .1;
 pipelines["pl2/f2/params/"] = clip_params;
 \end{lstlisting}
+
+Listing~\ref{pipeline_actions} shows the declaration of two pipelines. The first applies a contour filter to extract two isosurfaces of scalar field ``noise''. The second pipeline applies a threshold filter to screen the ``noise'' field, and then a clip filter to extract the intersection of what remains from the threshold with a sphere.

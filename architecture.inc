@@ -1,10 +1,10 @@
 \section{Architecture}
 \begin{figure*}
   \includegraphics[width=\textwidth=4cm]{images/alpine_arch}
-  \caption{This is NOT a tiger.}
+  \caption{This is NOT more than one tiger.}
 \end{figure*}
 
-\fix{Alpine Ascent, the runtime that implements the actions supported by the Alpine Interface, is built using VTK-h and Flow.}
+Alpine Ascent is the new in situ infrastructure that implements the actions supported by the Alpine Interface. Ascent leverages VTK-h and Flow. This section describes the architecture of VTK-h, Flow, and Ascent.
 
 \subsection{VTK-h}
 \fix{This is paraphrased from an ECP report Hank wrote.} VTK-h is a stand alone library that implements a distributed-memory layer on top of the VTK-m library~\cite{Moreland:CGA2016}, which focuses on shared-memory parallelism.
@@ -26,10 +26,9 @@ For distributed-memory parallelism, VTK-h uses MPI and also includes the DIY~\ci
 \subsection{Flow}
 
 %
-\fix{transition is abrupt here b/c the intro sentence re-hashes a main point from the prior section.}
+%\fix{transition is abrupt here b/c the intro sentence re-hashes a main point from the prior section.}
 % 
-
-VTK-h does not provide its own execution model. This choice simplifies the VTH-h API and makes it easy to leverage VTH-h within ParaView and VisIt`s existing full featured execution models. 
+Recall from the prior section that VTK-h does not provide its own execution model. This choice simplifies the VTH-h API and makes it easy to leverage VTH-h within ParaView and VisIt`s existing full featured execution models. 
 
 Since Alpine Ascent does not leverage ParaView or VisIt's infrastructure, it needs a basic execution model to support using VTH-h algorithms to carry out the user's requested actions. 
 
@@ -37,10 +36,8 @@ Ascent uses a simple dataflow library named Flow to efficiently compose and exec
 
 The VTK-h algorithms needed by Ascent are wrapped as a Flow Filters so they can be executed as part of a DAG composed by Ascent.
 
-Like its Python predecessor, Flow provides support for generic inputs and outputs. Flow provides a mechanism for filters to check input data types at runtime if necessary. Because of this data-type agnostic design, the Flow library does not depend on VTH-h. This provides the flexibility to create filters which can process data in other data models and APIs. This design supports important future use cases, such as creating a filter to refine high-order MFEM meshes into to VTK-h datasets for rendering.
+Like its Python predecessor, Flow provides support for generic inputs and outputs. Flow provides a mechanism for filters to check input data types at runtime if necessary. Because of this data-type agnostic design, the Flow library does not depend on VTH-h. This provides the flexibility to create filters which can process data in other data models and APIs. This design supports important future use cases, such as creating a filter to refine high-order MFEM \cite{mfem-library} meshes into to VTK-h datasets for rendering.
 
-
-\fix{cite MFEM, here or earlier?}
 
 % \fix{Cyrus: write this section. VTK-h, by design, contains no execution model.
 % %

@@ -11,8 +11,10 @@ VisIt's~\cite{VisIt} LibSim~\cite{LibSim} and ParaView's~\cite{ParaView}
 Catalyst~\cite{Catalyst}.
 %
 However, ALPINE has also decided to develop a new in situ 
-infrastructure, which is also called ALPINE (and disambiguated as 
-``ALPINE in situ infrastructure" when discussed alongside the ALPINE project).
+infrastructure, which is called ``ALPINE Ascent".
+%which is also called ALPINE (and disambiguated as 
+%``ALPINE in situ infrastructure" when discussed alongside the ALPINE project).
+% \fix{Note: We want to call the infrastructure ``Ascent", to stem confusion.}
 
 We believe ALPINE advances the state of the art in three distinct ways:
 \begin{itemize}
@@ -36,7 +38,7 @@ VTK-h is  introduced later in this paper.
 \item \textbf{Flyweight infrastructure.}
 For ALPINE, the flyweight goal is realized in three ways: (1) an interface that
 can easily adopted by stakeholders, (2) minimal dependencies on other
-software packages and small encumbrence on the simulation code's binary size,
+software packages and small encumbrance on the simulation code's binary size,
 and (3) minimal overheads incurred during processing, specifically with respect
 to copying data and memory usage.
 \item \textbf{Interoperability with software.}  
