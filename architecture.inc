@@ -58,7 +58,7 @@ The Ascent Runtime is the layer that sits on top of Flow and beneath the ALPINE 
 %
 Ascent's responsibility is to translate a set of actions (e.g., Listings~\ref{scene_actions}, \ref{extract_actions}, and \ref{pipeline_actions}) passed to the ALPINE ``Execute'' method into a Flow graph.
 %
-Ascent loops through hierarchy of actions contained in a conduit node, and creates a series of Flow filters (i.e., graph nodes) and connects the Flow filters together (i.e., edges).
+Ascent loops through hierarchy of actions contained in a Conduit Node, and creates a series of Flow filters (i.e., graph nodes) and connects the Flow filters together (i.e., edges).
 %
 Figure~\ref{flow_graph} shows the graph representation Ascent creates given the actions described by Listings~\ref{scene_actions}, \ref{extract_actions}, and \ref{pipeline_actions}.
 %
