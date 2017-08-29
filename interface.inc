@@ -1,5 +1,14 @@
 \section{Interface}
 \label{sec:interface}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{images/alpine_arch}
+  \caption{\label{ascent_arch}\fix{ALPINE Interface and ALPINE Ascent Architecture}}
+\end{figure}
+
+The ALPINE Interface is the API used to direct ALPINE Ascent, ALPINE's new flyweight in situ runtime. 
+Figure~\ref{ascent_arch} outlines the \fix{features, concepts, etc, supported?}
+
 The top-level interface to ALPINE mirrors the Strawman interface and consists of four methods: ``Open'', ``Publish'', ``Execute'', and ``Close''.
 %
 All data and parameters are passed into ALPINE using Conduit~\cite{conduit}, a library that provides an intuitive model for describing hierarchical scientific data. Since Conduit provides C++, C, Fortran, and Python APIs for data description, exposing the ALPINE interface in these languages is trivial.

@@ -1,9 +1,9 @@
 \section{Infrastructure}
 \label{sec:architecture}
-\begin{figure}
-  \includegraphics[width=\linewidth]{images/alpine_arch}
-  \caption{This is NOT more than one tiger.}
-\end{figure}
+% \begin{figure}
+%   \includegraphics[width=\linewidth]{images/alpine_arch}
+%   \caption{ALPINE Interface and ALPINE Ascent Architecture}
+% \end{figure}
 
 VTK-h, Flow, and Ascent are the three main ALPINE in situ infrastructure software components. VTK-h is library that will enable development of in situ algorithms that can be deployed in VisIt, ParaView, and Ascent. Flow is a simple data flow library that orchestrates the setup and execution of filter graphs. ALPINE Ascent is a new flyweight in situ runtime that implements the actions supported by the ALPINE Interface. Ascent leverages VTK-h and Flow. This section describes the roles of VTK-h, Flow, and Ascent.
 
