@@ -16,7 +16,7 @@ The ALPINE in situ infrastructure is heavily based on Strawman~\cite{LarsenStraw
 with Strawman effectively serving as an early prototype for ALPINE.
 %
 The key differences between ALPINE and Strawman are 
-(1) ALPINE is intended for end users while Strawman was a mini-app, 
+(1) ALPINE is intended for end users while Strawman was a mini-app,  % ALPINE includes a new interface intended for end users ?
 (2) ALPINE has extended distributed-memory support, including usage of DIY~\cite{DIY}, 
 (3) ALPINE uses VTK-m~\cite{Moreland:CGA2016} where Strawman used EAVL~\cite{EAVL}, and
 (4) ALPINE has extended support for using other packages and libraries.
