@@ -1,13 +1,7 @@
 \section{Interface}
 \label{sec:interface}
 
-\begin{figure}
-  \includegraphics[width=\linewidth]{images/alpine_arch}
-  \caption{\label{ascent_arch}\fix{ALPINE Interface and ALPINE Ascent Architecture}}
-\end{figure}
-
 The ALPINE Interface is the API used to direct ALPINE Ascent, ALPINE's new flyweight in situ runtime. 
-Figure~\ref{ascent_arch} outlines the \fix{features, concepts, etc, supported?}
 
 The top-level interface to ALPINE mirrors the Strawman interface and consists of four methods: ``Open'', ``Publish'', ``Execute'', and ``Close''.
 %
@@ -35,6 +29,13 @@ alpine.Close();
 \end{lstlisting}
 
 \subsection{Actions}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{images/alpine_arch}
+  \caption{\label{ascent_arch} The ALPINE Interface allows users to declare Scenes, Extracts, and Pipelines for execution by the ALPINE Ascent runtime.}
+\end{figure}
+
+
 In ALPINE, we replaced Strawman's simple rendering focused actions with a more expressive interface. The new interface is organized around three main use cases: making pictures, capturing data, and transforming data.
 %
 Users invoke these use cases by passing actions that declare sets of Scenes, Extracts, and Pipelines:
@@ -46,10 +47,9 @@ Users invoke these use cases by passing actions that declare sets of Scenes, Ext
 \end{itemize}
 
 
-
 At a high level, Scenes allow users to describe the images they want to create.
 %
-Extracts allows users to describe how they want to capture data for use outside of ALPINE, and Pipelines allow users to describe the ways they want ALPINE to transform their data.
+Extracts allows users to describe how they want to capture data for use outside of ALPINE, and Pipelines allow users to describe the ways they want ALPINE to transform their data. Figure~\ref{ascent_arch} outlines how three concepts are supported.
 
 \subsubsection{Scenes: Make Pictures}
 \label{sec:scenes}
