@@ -1,6 +1,6 @@
 \section{Interface}
 \label{sec:interface}
-The top-level interface to ALPINE mirrors the Strawman interface and consists of four methods: Open, Publish, Execute, and Close.
+The top-level interface to ALPINE mirrors the Strawman interface and consists of four methods: ``Open'', ``Publish'', ``Execute'', and ``Close''.
 %
 All data and parameters are passed into ALPINE using Conduit~\cite{conduit}, a library that provides an intuitive model for describing hierarchical scientific data. Since Conduit provides C++, C, Fortran, and Python APIs for data description, exposing the ALPINE interface in these languages is trivial.
 
@@ -40,7 +40,7 @@ Users invoke these use cases by passing actions that declare sets of Scenes, Ext
 
 At a high level, Scenes allow users to describe the images they want to create.
 %
-Extracts allows users to describe how they want to capture data for use outside of ALPINE, and Pipelines allow users to describe the ways they want to transform their data.
+Extracts allows users to describe how they want to capture data for use outside of ALPINE, and Pipelines allow users to describe the ways they want ALPINE to transform their data.
 
 \subsubsection{Scenes: Make Pictures}
 \label{sec:scenes}
@@ -49,7 +49,7 @@ A scene encapsulates the information required to generate one or more images.
 The user specifies a collection of plots (e.g., volume or surface rendering) and associated parameters such as camera definitions, light positions, and annotations.
 %
 
-To define a scene, a user describes one or more plots. There are only two required parameters for defining a plot: plot type and scalar field.
+To define a scene, a user describes one or more plots. The simplest a plot description requires only a plot type and scalar field name.
 %
 A scene defined in this way uses the default data source, which is all of the data published by the simulation, and default settings for camera position, image resolution, lighting, and annotations.
 %
@@ -57,7 +57,7 @@ An example of a minimally defined scene is shown at the beginning of Listing~\re
 %
 The definition of ``scene1'' indicates the user wants a volume plot of the scalar field ``noise'' using the default parameters.
 %
-In this case, a single image of the volume plot of the scalar field ``noise'' will be saved to the file system.
+In this case, a single image of the volume rendering of the scalar field ``noise'' will be saved to the file system.
 
 \begin{lstlisting}[caption={Example Scene Descriptions in C++},captionpos=b,label=scene_actions]
 conduit::Node scenes;
@@ -78,7 +78,7 @@ scenes["scene2/plot2/pipeline"] = "pl2";
 
 The second scene definition. ``scene2'', in Listing~\ref{scene_actions} indicates that a single image should be created by combining the output of two plots, a pseudocolor plot and a mesh plot.
 %
-Unlike the first example, the plots that form ``scene2'' do not use the default data source, and they instead use the result of a pipeline (see Section~\ref{sec:pipelines}), a series of transformations on the published mesh data. 
+Unlike the first example, the plots that form ``scene2'' do not use the default data source. Instead, they use the result of a pipeline (see Section~\ref{sec:pipelines}), a series of transformations on the published mesh data. 
 
 A single scene definition can create more than one image.
 %
@@ -123,7 +123,7 @@ This is where users specify typical geometric transforms (e.g., clipping and sli
 conduit::Node pipelines;
 // pipeline 1
 pipelines["pl1/f1/type"] = "contour";
-// filter knobs
+// filter parameters 
 conduit::Node contour_params; 
 contour_params["field"] = "noise";
 contour_params["iso_values"] = {0.0, 0.5};
@@ -131,7 +131,7 @@ pipelines["pl1/f1/params"] = contour_params;
 
 // pipeline 2 
 pipelines["pl2/f1/type"] = "threshold";
-// filter knobs
+// filter parameters
 conduit::Node thresh_params;
 thresh_params["field"]  = "noise";
 thresh_params["min_value"] = 0.0;
@@ -139,7 +139,7 @@ thresh_params["max_value"] = 0.5;
 pipelines["pl2/f1/params"] = thresh_params;
 
 pipelines["pl2/f2/type"]   = "clip";
-// filter knobs
+// filter parameters
 conduit::Node clip_params; 
 clip_params["topology"] = "mesh";
 clip_params["sphere/center/x"] = 0.0;
