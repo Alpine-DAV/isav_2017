@@ -4,16 +4,13 @@ We evaluated the performance of the ALPINE infrastructure using the included Kri
 %
 Running on 48 nodes equipped with 16-core Intel Xeon CPUs and NVIDIA K40m GPUs, we ran Kripke with a total problem size of 100M zones.
 %
-Each cycle, we clipped the mesh in half, creates a pseudocolor plot of the clipped mesh, and combined the result with a volume rendering of the mesh. 
+Each cycle, we clipped the mesh in half, created a pseudocolor plot of the clipped mesh, and combined the result with a volume rendering of the mesh. 
 %
 The average time per cycle spent performing simulation and visualization is shown in Table~\ref{small_run}, and the resulting image is shown in Figure~\ref{kripke}.
 %
 Visualization results in less than 5\% of total runtime.
 
-\begin{figure}
-\includegraphics[width=3cm]{images/kripke}
-\caption{\label{kripke}Image produced using the operations described in Section~\ref{sec:results}.}
-\end{figure}
+
 
 \begin{table}[]
 \centering
