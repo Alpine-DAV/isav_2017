@@ -2,8 +2,8 @@
 \label{sec:results}
 
 \begin{figure}
-\includegraphics[width=6cm]{images/kripke}
-\caption{Lion.}
+\includegraphics[width=4cm]{images/kripke}
+\caption{Image produced from Kripke.}
 \end{figure}
 
 \begin{table}[]
