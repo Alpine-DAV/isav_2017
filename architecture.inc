@@ -1,8 +1,8 @@
 \section{Architecture}
-\begin{figure*}
-  \includegraphics[width=\textwidth=4cm]{images/alpine_arch}
+\begin{figure}
+  \includegraphics[width=\linewidth]{images/alpine_arch}
   \caption{This is NOT more than one tiger.}
-\end{figure*}
+\end{figure}
 
 Alpine Ascent is the new in situ infrastructure that implements the actions supported by the Alpine Interface. Ascent leverages VTK-h and Flow. This section describes the architecture of VTK-h, Flow, and Ascent.
 
@@ -65,6 +65,6 @@ When the `execute' action is processed, Ascent executes the graph.
 
 
 \begin{figure}
-\includegraphics{images/flow_graph}
+\includegraphics[width=6cm]{images/flow_graph}
 \caption{\label{flow_graph}A Flow graph created from the actions described by Listings~\ref{scene_actions}, \ref{extract_actions}, and \ref{pipeline_actions}.}
 \end{figure}

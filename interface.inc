@@ -60,7 +60,6 @@ In this case, a single image of the volume plot of the scalar field ``noise'' wi
 
 \begin{lstlisting}[caption={Example Scene Descriptions in C++},captionpos=b,label=scene_actions]
 conduit::Node scenes;
-
 // scene 1, a single volume plot 
 // w/ default camera and output res
 scenes["scene1/plots/plot1/type"] = "volume";
