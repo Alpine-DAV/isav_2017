@@ -1,22 +1,22 @@
 \section{Interface}
-The top-level interface to Alpine mirrors the Strawman interface and consists of four methods: Open, Publish, Execute, and Close.
+The top-level interface to ALPINE mirrors the Strawman interface and consists of four methods: Open, Publish, Execute, and Close.
 %
-All data and parameters are passed into Alpine using Conduit~\cite{conduit}, a library that provides intuitive model for describing hierarchical scientific data. Since Conduit provides C++, C, Fortran, and Python APIs for data description, exposing the Alpine interface in these languages is trivial.
+All data and parameters are passed into ALPINE using Conduit~\cite{conduit}, a library that provides intuitive model for describing hierarchical scientific data. Since Conduit provides C++, C, Fortran, and Python APIs for data description, exposing the ALPINE interface in these languages is trivial.
 
 % 
-Alpine is initialized by calling the ``Open'' method and passing several parameters, including an MPI communicator.
+ALPINE is initialized by calling the ``Open'' method and passing several parameters, including an MPI communicator.
 %
-Next, simulation mesh data structures are described using Conduit's Mesh Blueprint \cite{conduit_blueprint}, a set of conventions for describing domain-decomposed mesh data ranging from uniform meshes to topologies composed of higher order elements, and the resulting Conduit Node is published through Alpine's ``Publish'' method. 
+Next, simulation mesh data structures are described using Conduit's Mesh Blueprint \cite{conduit_blueprint}, a set of conventions for describing domain-decomposed mesh data ranging from uniform meshes to topologies composed of higher order elements, and the resulting Conduit Node is published through ALPINE's ``Publish'' method. 
 
-Alpine verifies that published data conforms to the Mesh Blueprint. If the data does not conform, a detailed description of what is missing or invalid is provided. 
-
-%
-Third, Alpine executes sets of actions described and passed to the ``Execute'' method.
+ALPINE verifies that published data conforms to the Mesh Blueprint. If the data does not conform, a detailed description of what is missing or invalid is provided. 
 
 %
-Finally, the ``Close'' call informs Alpine that no further execution is required.
+Third, ALPINE executes sets of actions described and passed to the ``Execute'' method.
 
-\begin{lstlisting}[caption={Top-level Alpine interface in C++.},captionpos=b,label=top_level_interface]
+%
+Finally, the ``Close'' call informs ALPINE that no further execution is required.
+
+\begin{lstlisting}[caption={Top-level ALPINE interface in C++.},captionpos=b,label=top_level_interface]
 Alpine alpine;
 alpine.Open(options);
 alpine.Publish(data);
@@ -25,7 +25,7 @@ alpine.Close();
 \end{lstlisting}
 
 \subsection{Actions}
-In Alpine, we replaced Strawman's simple rendering focused actions with a more expressive interface. The new interface is organized around three main use cases: making pictures, capturing data, and transforming data.
+In ALPINE, we replaced Strawman's simple rendering focused actions with a more expressive interface. The new interface is organized around three main use cases: making pictures, capturing data, and transforming data.
 %
 Users invoke these use cases by passing actions that declare sets of Scenes, Extracts, and Pipelines:
 
@@ -39,7 +39,7 @@ Users invoke these use cases by passing actions that declare sets of Scenes, Ext
 
 At a high level, Scenes allow users to describe the images they want to create.
 %
-Extracts allows users to describe how they want to capture data for use outside of Alpine, and Pipelines allow users to describe the ways they want to transform their data.
+Extracts allows users to describe how they want to capture data for use outside of ALPINE, and Pipelines allow users to describe the ways they want to transform their data.
 
 \subsection{Scenes: Make Pictures}
 \label{sec:scenes}
@@ -91,7 +91,7 @@ Further, rendering parameters support camera definitions that output many images
 
 Extracts are an abstraction that enables the user to specify how they want to capture their data.
 %
-In terms of Alpine, data capture sends data outside the Alpine infrastructure.
+In terms of ALPINE, data capture sends data outside the ALPINE infrastructure.
 %
 Examples include writing out the raw simulation data to the file system, creating HDF5 files, or sending the data off node (e.g., ADIOS~\cite{Lofstead2008}).
 
