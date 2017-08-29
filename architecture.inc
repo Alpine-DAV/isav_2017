@@ -1,4 +1,4 @@
-\section{Architecture}
+\section{Infrastructure}
 \label{sec:architecture}
 \begin{figure}
   \includegraphics[width=\linewidth]{images/alpine_arch}
@@ -22,7 +22,7 @@ A VTK-h data set is a collection of VTK-m data sets along with supporting method
 %
 Within VTK-h, most code will directly invoke VTK-m methods to implement algorithms, and while it is possible to directly implement new VTK-m functionality within VTK-h, that functionality is limited to distributed-memory features.
 %
-For distributed-memory parallelism, VTK-h uses MPI and also includes the DIY~\cite{peterka_ldav11} toolkit which encapsulates block-based abstracts that are common in distributed-memory problems.
+For distributed-memory parallelism, VTK-h uses MPI and also includes the DIY~\cite{peterka_ldav11} toolkit which encapsulates block-based abstracts that are common in distributed-memory problems, and VTK-h uses DIY to implement distributed-memory image compositing.
 
 \subsection{Flow}
 
@@ -66,6 +66,6 @@ When the `execute' action is processed, Ascent executes the graph.
 
 
 \begin{figure}
-\includegraphics[width=5cm]{images/flow_graph}
+\includegraphics[width=4cm]{images/flow_graph}
 \caption{\label{flow_graph}A Flow graph created from the actions described by Listings~\ref{scene_actions}, \ref{extract_actions}, and \ref{pipeline_actions}.}
 \end{figure}
