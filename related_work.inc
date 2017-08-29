@@ -9,7 +9,7 @@ Many of the design decisions made by ALPINE are similar to LibSim~\cite{LibSim} 
 linking into the simulation binary, alternating execution between simulation and visualization,
 and sharing the same memory space.
 %
-This contrasts with an approach like ADIOS~\cite{adios}, which takes a more loosely-coupled
+This contrasts with an approach like ADIOS~\cite{Lofstead2008}, which takes a more loosely-coupled
 approach.
 
 The ALPINE in situ infrastructure is heavily based on Strawman~\cite{LarsenStrawman}, 

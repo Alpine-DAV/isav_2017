@@ -10,7 +10,7 @@ ALPINE's strategy is to support two existing in situ infrastructures:
 VisIt's~\cite{VisIt} LibSim~\cite{LibSim} and ParaView's~\cite{ParaView} 
 Catalyst~\cite{Catalyst}.
 %
-However, ALPINE has also decided to develop a new in situ 
+However, ALPINE has also developed a new in situ 
 infrastructure, which is called ``ALPINE Ascent".
 %which is also called ALPINE (and disambiguated as 
 %``ALPINE in situ infrastructure" when discussed alongside the ALPINE project).
@@ -37,8 +37,8 @@ parallelism), that combines VTK-m and DIY/MPI.
 VTK-h is  introduced later in this paper.
 \item \textbf{Flyweight infrastructure.}
 For ALPINE, the flyweight goal is realized in three ways: (1) an interface that
-can easily adopted by stakeholders, (2) minimal dependencies on other
-software packages and small encumbrance on the simulation code's binary size,
+can easily be adopted by stakeholders, (2) minimal dependencies on other
+software packages and small encumbrance on the binary size  of the simulation code,
 and (3) minimal overheads incurred during processing, specifically with respect
 to copying data and memory usage.
 \item \textbf{Interoperability with software.}  
@@ -47,7 +47,7 @@ libraries.
 %
 Specifically ALPINE makes use of a data flow library called ``Flow" to organize execution.
 %
-Flow is agnostic to data model and underlying library, and therefore can enable 
+Flow is agnostic to the data model and underlying library, and therefore can enable 
 other libraries (such as R~\cite{team2000r}) to be used within ALPINE.
 %
 Of course, it would be up to those libraries to provide support for parallelism, and additional

@@ -1,7 +1,8 @@
 \section{Interface}
+\label{sec:interface}
 The top-level interface to ALPINE mirrors the Strawman interface and consists of four methods: Open, Publish, Execute, and Close.
 %
-All data and parameters are passed into ALPINE using Conduit~\cite{conduit}, a library that provides intuitive model for describing hierarchical scientific data. Since Conduit provides C++, C, Fortran, and Python APIs for data description, exposing the ALPINE interface in these languages is trivial.
+All data and parameters are passed into ALPINE using Conduit~\cite{conduit}, a library that provides an intuitive model for describing hierarchical scientific data. Since Conduit provides C++, C, Fortran, and Python APIs for data description, exposing the ALPINE interface in these languages is trivial.
 
 % 
 ALPINE is initialized by calling the ``Open'' method and passing several parameters, including an MPI communicator.
@@ -41,7 +42,7 @@ At a high level, Scenes allow users to describe the images they want to create.
 %
 Extracts allows users to describe how they want to capture data for use outside of ALPINE, and Pipelines allow users to describe the ways they want to transform their data.
 
-\subsection{Scenes: Make Pictures}
+\subsubsection{Scenes: Make Pictures}
 \label{sec:scenes}
 A scene encapsulates the information required to generate one or more images.
 %
@@ -83,10 +84,10 @@ A single scene definition can create more than one image.
 %
 The rendering parameters are contained in a list, and one image is created for each entry.
 %
-Further, rendering parameters support camera definitions that output many images. This allows us to target  Cinema~\ref{AhrensCinema}, by providing camera parameters $phi$ and $theta$, that produce a total of $phi * theta$ images.
+Further, rendering parameters support camera definitions that output many images. This allows us to target  Cinema~\cite{AhrensCinema}, by providing camera parameters $phi$ and $theta$, that produce a total of $phi * theta$ images.
 
 
-\subsection{Extracts: Capture Data}
+\subsubsection{Extracts: Capture Data}
 \label{sec:extracts}
 
 Extracts are an abstraction that enables the user to specify how they want to capture their data.
@@ -106,17 +107,17 @@ extracts["ex2/pipeline"] = "pl2";
 \end{lstlisting}
 
 
-Extracts, like scenes, can either consume the default data source, all published simulation data, or the result of a pipeline (see~\ref{sec:pipelines}).
+Extracts, like scenes, can either consume the default data source, all published simulation data, or the result of a pipeline (see Section~\ref{sec:pipelines}).
 %
 Listing~\ref{extract_actions} shows the declaration of two extracts.
 %
 The first extract saves the default data source into an HDF5 file, and the second extract saves the result of a pipeline, referenced by pipeline name, into an HDF5 file.
 
-\subsection{Pipelines: Transform Data}
+\subsubsection{Pipelines: Transform Data}
 \label{sec:pipelines}
 
 Pipelines allow users to compose filters that transform the published input data into new meshes.
-This is where users specify typical geometric tranforms (clipping, slicing), field based transforms (threshold, contour), etc. The resulting data from each Pipeline can be used as input to Scenes or Extracts. 
+This is where users specify typical geometric transforms (e.g., clipping and slicing), field based transforms (e.g., threshold and contour), etc. The resulting data from each Pipeline can be used as input to Scenes or Extracts. 
 
 \begin{lstlisting}[caption={Example Pipeline Descriptions in C++.},captionpos=b,label=pipeline_actions]
 conduit::Node pipelines;
