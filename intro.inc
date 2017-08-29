@@ -6,12 +6,12 @@ Exascale Computing Project (ECP)~\cite{messina2017exascale}.
 Its purpose is to deliver in situ infrastructure for visualization and
 analysis to ECP application teams.
 %
-ALPINE's strategy is to support two existing in situ infrastructures: 
+ALPINE's strategy is to support two existing in situ runtimes: 
 VisIt's~\cite{VisIt} LibSim~\cite{LibSim} and ParaView's~\cite{ParaView} 
 Catalyst~\cite{Catalyst}.
 %
 However, ALPINE has also developed a new in situ 
-infrastructure, which is called ``ALPINE Ascent".
+runtime, which is called ``ALPINE Ascent".
 %which is also called ALPINE (and disambiguated as 
 %``ALPINE in situ infrastructure" when discussed alongside the ALPINE project).
 % \fix{Note: We want to call the infrastructure ``Ascent", to stem confusion.}
@@ -42,7 +42,7 @@ software packages and small encumbrance on the binary size  of the simulation co
 and (3) minimal overheads incurred during processing, specifically with respect
 to copying data and memory usage.
 \item \textbf{Interoperability with software.}  
-Although VTK-m plays a special role in the ALPINE project, it was designed to support additional
+Although VTK-m plays a special role in the ALPINE project, Ascent was designed to support additional
 libraries.
 %
 Specifically ALPINE makes use of a data flow library called ``Flow" to organize execution.
@@ -63,7 +63,7 @@ work would be needed to bridge between data models (for example, VTK-m to R or v
 
 The paper is organized as follows:
 Section~\ref{sec:interface} describes ALPINE's interface concepts, Section~\ref{sec:architecture}
-describes its design, and Section~\ref{sec:results} describes some initial results.
+describes the main components of ALPINE's infrastructure, and Section~\ref{sec:results} describes some initial results.
 
 %related work
 
