@@ -24,7 +24,7 @@ A VTK-h data set is a collection of VTK-m data sets along with supporting method
 %
 Within VTK-h, most code will directly invoke VTK-m methods to implement algorithms, and while it is possible to directly implement new VTK-m functionality within VTK-h, that functionality is limited to distributed-memory features.
 %
-For distributed-memory parallelism, VTK-h uses MPI and also includes the DIY~\cite{peterka_ldav11} toolkit which encapsulates block-based abstracts that are common in distributed-memory problems, and VTK-h uses DIY to implement distributed-memory image compositing.
+For distributed-memory parallelism, VTK-h uses MPI and also includes the DIY~\cite{peterka_ldav11} toolkit which encapsulates block-based abstractions that are common in distributed-memory problems, and VTK-h uses DIY to implement distributed-memory image compositing.
 
 \subsection{Flow}
 
@@ -35,9 +35,9 @@ Recall from the prior section that VTK-h does not provide its own execution mode
 
 Since ALPINE Ascent does not leverage ParaView or VisIt's infrastructure, it needs a basic execution model to support using VTK-h algorithms to carry out the user's requested actions. 
 
-Ascent uses a simple data flow library named Flow to efficiently compose and execute VTK-h filters. ALPINE`s Flow library is a C++ evolution of the Python data flow network infrastructure used in \cite{cyrush_pyhpc2012}. It supports declaration and execution of a directed acyclic graph (DAG) of filters created from a menu of filter types that are registered at runtime. Filters declare a minimal interface, which includes the number of expected inputs and outputs, and a set of default parameters. Flow uses a topological sort to ensure proper filter execution order, tracks all intermediate results, and provides basic memory management capabilities. 
+Ascent uses a simple data flow library named Flow to efficiently compose and execute VTK-h filters. ALPINE's Flow library is a C++ evolution of the Python data flow network infrastructure used in \cite{cyrush_pyhpc2012}. It supports declaration and execution of directed acyclic graphs (DAGs) of filters created from a menu of filter types that are registered at runtime. Filters declare a minimal interface, which includes the number of expected inputs and outputs, and a set of default parameters. Flow uses a topological sort to ensure proper filter execution order, tracks all intermediate results, and provides basic memory management capabilities. 
 
-The VTK-h algorithms needed by Ascent are wrapped as Flow Filters so they can be executed as part of a DAG composed by Ascent.
+The VTK-h algorithms needed by Ascent are wrapped as Flow Filters so they can be executed as part of DAGs composed by Ascent.
 
 Like its Python predecessor, Flow provides support for generic inputs and outputs. Flow provides a mechanism for filters to check input data types at runtime if necessary. Because of this data-type agnostic design, the Flow library does not depend on VTK-h. This provides the flexibility to create filters which can process data in other data models and APIs. This design supports important future use cases, such as creating a filter to refine high-order MFEM \cite{mfem-library} meshes into VTK-h data sets for rendering.
 

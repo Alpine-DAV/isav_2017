@@ -3,7 +3,7 @@
 
 The ALPINE Interface is the API used to direct ALPINE Ascent, ALPINE's new flyweight in situ runtime. 
 
-The top-level interface to ALPINE mirrors the Strawman interface and consists of four methods: ``Open'', ``Publish'', ``Execute'', and ``Close''.
+The top-level interface mirrors the Strawman interface and consists of four methods: ``Open'', ``Publish'', ``Execute'', and ``Close''.
 %
 All data and parameters are passed into ALPINE using Conduit~\cite{conduit}, a library that provides an intuitive model for describing hierarchical scientific data. Since Conduit provides C++, C, Fortran, and Python APIs for data description, exposing the ALPINE interface in these languages is trivial.
 
@@ -58,7 +58,7 @@ A scene encapsulates the information required to generate one or more images.
 The user specifies a collection of plots (e.g., volume or surface rendering) and associated parameters such as camera definitions, light positions, and annotations.
 %
 
-To define a scene, a user describes one or more plots. The simplest a plot description requires only a plot type and scalar field name.
+To define a scene, a user describes one or more plots. The simplest plot description requires only a plot type and scalar field name.
 %
 A scene defined in this way uses the default data source, which is all of the data published by the simulation, and default settings for camera position, image resolution, lighting, and annotations.
 %

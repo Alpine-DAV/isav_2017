@@ -42,13 +42,13 @@ software packages and small encumbrance on the binary size  of the simulation co
 and (3) minimal overheads incurred during processing, specifically with respect
 to copying data and memory usage.
 \item \textbf{Interoperability with software.}  
-Although VTK-m plays a special role in the ALPINE project, Ascent was designed to support additional
+Although VTK-m plays a special role in the ALPINE project, the new Ascent runtime was designed to support additional
 libraries.
 %
-Specifically ALPINE makes use of a data flow library called ``Flow" to organize execution.
+Specifically Ascent makes use of a data flow library called ``Flow" to organize execution.
 %
-Flow is agnostic to the data model and underlying library, and therefore can enable 
-other libraries (such as R~\cite{team2000r}) to be used within ALPINE.
+Flow is agnostic to the data models and libraries used in Filters, and therefore can enable 
+other libraries (such as R~\cite{team2000r}) to be used within Ascent.
 %
 Of course, it would be up to those libraries to provide support for parallelism, and additional
 work would be needed to bridge between data models (for example, VTK-m to R or vice-versa).
