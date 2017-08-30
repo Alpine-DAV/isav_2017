@@ -159,11 +159,17 @@ on initial experiments performed using the infrastructure.
 \input{architecture.inc}
 \input{results.inc}
 \section{Conclusion}
-We decribed the ALPINE in situ infrastructure which is an evolution of Strawman, and the APLINE interface designed to enable stakeholders to easily describe transform data, make pictures, and capture data.
+
+We described the new ALPINE in situ interface and ALPINE's infrastructure components VTK-h, Flow, and Ascent.
+
+This new interface and these components enable simulation users to easily execute in situ visualization and analysis algorithms
+on modern supercomputing architectures. 
+
+The ALPINE interface and Ascent runtime are evolutions of the Strawman in situ viz mini-app. ALPINE is aimed at production, and it includes significant additions to support a wider range use cases than Strawman. We demonstrated this with an example of transforming data and rendering multiple plots with in a Kripke simulation. 
 %
-VTK-h is hybrid-parallel filter library that functions as a single point to deploy in situ algorithms into ALPINE, ParaView, ad VisIt.
+%VTK-h is new filter library that will serve as a single point to deploy hybrid-parallel in situ algorithms into Ascent, ParaView, and VisIt.
+%In addition, the ALPINE Ascent runtime profides flexibility to enable interoperability with other software ecosystems. 
 %
-Flow provides both an execution model for VTK-h and the flexibility to enable interoperability with other software.
 %
 For future work, we will continue to develop VTK-h and ALPINE capabilities, and we will work with ECP applications teams to integrate ALPINE.
  
