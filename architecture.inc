@@ -20,6 +20,8 @@ Consequently, VTK-h serves as a single point of development in which algorithms 
 
 VTK-h heavily leverages VTK-m, and the basic building block of the VTK-h data model is the VTK-m data set.
 %
+\fix{Strawman uses EAVL for its shared-memory parallelism, and just as ALPINE Ascent is the successor to Strawman, VTK-m is the successor to EAVL.}
+%
 A VTK-h data set is a collection of VTK-m data sets along with supporting methods that handle distributed-memory queries (e.g., global scalar ranges).
 %
 Within VTK-h, most code will directly invoke VTK-m methods to implement algorithms, and while it is possible to directly implement new VTK-m functionality within VTK-h, that functionality is limited to distributed-memory features.

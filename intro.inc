@@ -47,7 +47,7 @@ libraries.
 %
 Specifically Ascent makes use of a data flow library called ``Flow" to organize execution.
 %
-Flow is agnostic to the data models and libraries used in Filters, and therefore can enable 
+Flow is agnostic to the data models and libraries used in filters, and therefore can enable 
 other libraries (such as R~\cite{team2000r}) to be used within Ascent.
 %
 Of course, it would be up to those libraries to provide support for parallelism, and additional

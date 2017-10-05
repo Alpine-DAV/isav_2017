@@ -11,12 +11,10 @@ All data and parameters are passed into ALPINE using Conduit~\cite{conduit}, a l
 ALPINE is initialized by calling the ``Open'' method and passing several parameters, including an MPI communicator.
 %
 Next, simulation mesh data structures are described using Conduit's Mesh Blueprint \cite{conduit_blueprint}, a set of conventions for describing domain-decomposed mesh data ranging from uniform meshes to topologies composed of higher order elements, and the resulting Conduit Node is published through ALPINE's ``Publish'' method. 
-
+%
 ALPINE verifies that published data conforms to the Mesh Blueprint. If the data does not conform, a detailed description of what is missing or invalid is provided. 
-
 %
 Third, ALPINE executes sets of actions described and passed to the ``Execute'' method.
-
 %
 Finally, the ``Close'' call informs ALPINE that no further execution is required.
 

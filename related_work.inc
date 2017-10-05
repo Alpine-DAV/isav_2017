@@ -12,6 +12,8 @@ and sharing the same memory space.
 This contrasts with an approach like ADIOS~\cite{Lofstead2008}, which takes a more loosely-coupled
 approach.
 
+\fix{SENSEI~\cite{AyachitSENSEI} is a generic in situ interface that can be characterized as a ``write once, use everywhere'' approach that supports Catalyst, Libsim, and ADIOS back-ends. The ALPINE in situ infrastructure differs in that we have an execution model and our own visualization routines. Additionally, our execution model allows us to perform hybrid in situ, where we can perform on-node visualization then send the results off-node (e.g., ADIOS). }
+
 The ALPINE in situ infrastructure is heavily based on Strawman~\cite{LarsenStrawman}, 
 with Strawman effectively serving as an early prototype for ALPINE.
 %

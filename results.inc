@@ -5,6 +5,7 @@ We evaluated the performance of the ALPINE infrastructure using the included Kri
 Running on 48 nodes equipped with 16-core Intel Xeon CPUs and NVIDIA K40m GPUs, we ran Kripke with a total problem size of 100M zones.
 %
 Each cycle, we clipped the mesh in half, created a pseudocolor plot of the clipped mesh, and combined the result with a volume rendering of the mesh. 
+\fix{It is worth noting that this rendering is not be possible in Strawman, since Strawman does not support multiple plots and does not contain any filters.}
 %
 The average time per cycle spent performing simulation and visualization is shown in Table~\ref{small_run}, and the resulting image is shown in Figure~\ref{kripke}.
 %
